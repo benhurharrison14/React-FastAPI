@@ -16,6 +16,9 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
 
 eureka:
+instance:
+    prefer-ip-address: false
+    hostname: cashkick-service-107202934169.us-central1.run.app
   client:
     register-with-eureka: true
     fetch-registry: true

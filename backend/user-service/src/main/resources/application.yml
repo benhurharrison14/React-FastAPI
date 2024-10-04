@@ -21,6 +21,9 @@ spring:
     debug: true
 
 eureka:
+ instance:
+    prefer-ip-address: false       # Disable IP-based registration
+    hostname: user-service-107202934169.us-central1.run.app  # Public URL for the service
   client:
     register-with-eureka: true
     fetch-registry: true

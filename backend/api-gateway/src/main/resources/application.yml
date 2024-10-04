@@ -1,6 +1,45 @@
 server:
   port: 9191
 
+# spring:
+#   application:
+#     name: API-GATEWAY
+#   cloud:
+#     gateway:
+#       discovery:
+#         locator:
+#           enabled: true
+#           lowerCaseServiceId: true
+#       globalcors:
+#         corsConfigurations:
+#           '[/**]':
+#             allowedOrigins: "*"
+#             allowedHeaders: "*"
+#             allowedMethods: "*"
+#       routes:
+#         - id: USER-SERVICE
+#           uri: https://user-service-107202934169.us-central1.run.app
+#           predicates:
+#             - Path=/users/**
+#         - id: CASHKICK-SERVICE
+#           uri: https://cashkick-service-107202934169.us-central1.run.app
+#           predicates:
+#             - Path=/cashkicks/**
+#           filters:
+#             - AuthenticationFilter
+#         - id: CONTRACT-SERVICE
+#           uri: https://contract-service-107202934169.us-central1.run.app
+#           predicates:
+#             - Path=/contracts/**
+#           filters:
+#             - AuthenticationFilter
+#         - id: PAYMENT-SERVICE
+#           uri: https://payment-service-107202934169.us-central1.run.app
+#           predicates:
+#             - Path=/payments/**
+#           filters:
+#             - AuthenticationFilter
+
 spring:
   application:
     name: API-GATEWAY
@@ -10,31 +49,25 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            allowedMethods: "*"
       routes:
         - id: USER-SERVICE
-          uri: https://user-service-107202934169.us-central1.run.app
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
         - id: CASHKICK-SERVICE
-          uri: https://cashkick-service-107202934169.us-central1.run.app
+          uri: lb://CASHKICK-SERVICE
           predicates:
             - Path=/cashkicks/**
           filters:
             - AuthenticationFilter
         - id: CONTRACT-SERVICE
-          uri: https://contract-service-107202934169.us-central1.run.app
+          uri: lb://CONTRACT-SERVICE
           predicates:
             - Path=/contracts/**
           filters:
             - AuthenticationFilter
         - id: PAYMENT-SERVICE
-          uri: https://payment-service-107202934169.us-central1.run.app
+          uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/payments/**
           filters:
